@@ -16,8 +16,47 @@
     <br />
     <label for="Flat">Flat number:</label>
     <input type="text" id="flat" name="flat" /><br /><br />
-    <button>
-      <a href="file:///C:/Users/Windows/Desktop/page2.html">Happy Q</a>
+    <button onclick="addSlot()">
+      Happy Q
+      <!-- <a href="file:///C:/Users/Windows/Desktop/page2.html">Happy Q</a> -->
     </button>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDmay93TUha1w1HiQhDb5R3f4iTJaHmJNI",
+        authDomain: "happyq-57f0f.firebaseapp.com",
+        databaseURL: "https://happyq-57f0f.firebaseio.com",
+        projectId: "happyq-57f0f",
+        storageBucket: "happyq-57f0f.appspot.com",
+        messagingSenderId: "507063357152",
+        appId: "1:507063357152:web:47531a22ed24b85b094a85"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      let db = firebase.firestore();
+
+      function addSlot() {
+        db.collection("timeSlots")
+          .add({
+            flat: "68/4",
+            // new Date(year, month, day, hours, minutes, seconds, milliseconds)
+            slot: Date(2021, 3, 28, 10, 0, 0, 0),
+            slotNumber: 1
+          })
+          .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
+      }
+    </script>
   </body>
 </html>
